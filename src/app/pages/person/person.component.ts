@@ -13,14 +13,8 @@ import {
 export class PersonComponent implements OnInit {
   step: any = 1;
   persona = new FormGroup({
-    calidad: new FormControl('', [
-      Validators.required,
-      Validators.minLength(4),
-    ]),
-    incidentid: new FormControl('', [
-      Validators.required,
-      Validators.minLength(4),
-    ]),
+    calidad: new FormControl('', [Validators.required]),
+    incidentid: new FormControl('', [Validators.required]),
     nombre: new FormControl('', [Validators.required]),
     apellidoP: new FormControl('', [Validators.required]),
     apellidoM: new FormControl('', [Validators.required]),
@@ -67,9 +61,27 @@ export class PersonComponent implements OnInit {
   }
   validateData() {
     if (this.step == 1) {
+      if (this.persona.get('calidad')?.invalid) {
+        this.persona.controls.calidad.markAllAsTouched();
+      } else if (this.persona.get('incidentid')?.invalid) {
+        this.persona.controls.incidentid.markAllAsTouched();
+      } else if (this.persona.get('nombre')?.invalid) {
+        this.persona.controls.nombre.markAllAsTouched();
+      } else if (this.persona.get('apellidoP')?.invalid) {
+        this.persona.controls.apellidoP.markAllAsTouched();
+      } else if (this.persona.get('apellidoM')?.invalid) {
+        this.persona.controls.apellidoM.markAllAsTouched();
+      } else if (this.persona.get('alias')?.invalid) {
+        this.persona.controls.alias.markAllAsTouched();
+      } else {
+        this.step = this.step + 1;
+      }
     } else if (this.step == 2) {
+      this.step = this.step + 1;
     } else if (this.step == 3) {
+      this.step = this.step + 1;
     } else if (this.step == 4) {
+      this.step = this.step + 1;
     }
   }
   previous() {
@@ -78,7 +90,6 @@ export class PersonComponent implements OnInit {
 
   next() {
     this.validateData();
-    this.step = this.step + 1;
   }
   guardarDatos() {
     // console.log(this.persona.value);
