@@ -14,7 +14,10 @@
     <ng-template>
       <ion-header>
         <ion-toolbar color="primary">
-          <ion-title>Formulario persona</ion-title>
+          <ion-title *ngIf="step == 1">1: Datos persona </ion-title>
+          <ion-title *ngIf="step == 2">2: Datos persona </ion-title>
+          <ion-title *ngIf="step == 3">3: Datos persona </ion-title>
+          <ion-title *ngIf="step == 4">4: Datos persona </ion-title>
           <ion-buttons slot="end">
             <ion-button (click)="setOpen(false)">
               <ion-icon name="close-outline"></ion-icon>
@@ -23,7 +26,322 @@
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
-        <p>contenido de formulario aqui</p>
+        <form
+          autocomplete="off"
+          [formGroup]="persona"
+          (ngSubmit)="guardarDatos()"
+        >
+          <ion-grid>
+            <ion-row *ngIf="step == 1">
+              <ion-col size="6">
+                <ion-item>
+                  <ion-select
+                    interface="popover"
+                    placeholder="Selecciona calidad"
+                    formControlName="calidad"
+                  >
+                    <ion-select-option value="calidad1"
+                      >Calidad1</ion-select-option
+                    >
+                    <ion-select-option value="calidad2"
+                      >Calidad2</ion-select-option
+                    >
+                    <ion-select-option value="calidad3"
+                      >Calidad3</ion-select-option
+                    >
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="6">
+                <ion-item>
+                  <ion-select
+                    interface="popover"
+                    placeholder="Selecciona incidente"
+                    formControlName="incidentid"
+                  >
+                    <ion-select-option value="incidente1"
+                      >incidente1</ion-select-option
+                    >
+                    <ion-select-option value="incidente2"
+                      >incidente2</ion-select-option
+                    >
+                    <ion-select-option value="incidente3"
+                      >incidente3</ion-select-option
+                    >
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="floating">Nombre</ion-label>
+                  <ion-input formControlName="nombre"></ion-input>
+                </ion-item>
+                <ion-text *ngIf="nombreNoValido" color="danger"
+                  ><sub>Nombre es requerido</sub>
+                </ion-text>
+              </ion-col>
+
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="floating">Apellido paterno</ion-label>
+                  <ion-input formControlName="apellidoP"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="floating">Apellido materno</ion-label>
+                  <ion-input formControlName="apellidoM"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="floating">Alias</ion-label>
+                  <ion-input formControlName="alias"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngIf="step == 2">
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="floating">Nacionalidad</ion-label>
+                  <ion-select
+                    interface="popover"
+                    formControlName="nacionalidad"
+                  >
+                    <ion-select-option value="nacionalidad1"
+                      >Nacionalidad1</ion-select-option
+                    >
+                    <ion-select-option value="nacionalidad2"
+                      >Nacionalidad2</ion-select-option
+                    >
+                    <ion-select-option value="nacionalidad3"
+                      >Nacionalidad3</ion-select-option
+                    >
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="floating">Edad</ion-label>
+                  <ion-input formControlName="edad"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="7">
+                <ion-item>
+                  <ion-label position="floating">Fecha de nacimiento</ion-label>
+                  <ion-input formControlName="fechaNacimiento"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="5">
+                <ion-item>
+                  <ion-label position="floating">Genero</ion-label>
+                  <ion-select interface="popover" formControlName="genero">
+                    <ion-select-option value="genero1"
+                      >Genero1</ion-select-option
+                    >
+                    <ion-select-option value="genero2"
+                      >Genero2</ion-select-option
+                    >
+                    <ion-select-option value="genero3"
+                      >Genero3</ion-select-option
+                    >
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="floating">Ocupacion</ion-label>
+                  <ion-select interface="popover" formControlName="ocupacion">
+                    <ion-select-option value="ocupacion1"
+                      >Ocupacion1</ion-select-option
+                    >
+                    <ion-select-option value="ocupacion2"
+                      >Ocupacion2</ion-select-option
+                    >
+                    <ion-select-option value="ocupacion3"
+                      >Ocupacion3</ion-select-option
+                    >
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="floating">Estado Civil</ion-label>
+                  <ion-select interface="popover" formControlName="estadoCivil">
+                    <ion-select-option value="estadoCivil1"
+                      >EstadoCivil1</ion-select-option
+                    >
+                    <ion-select-option value="estadoCivil2"
+                      >EstadoCivil2</ion-select-option
+                    >
+                    <ion-select-option value="estadoCivil3"
+                      >EstadoCivil3</ion-select-option
+                    >
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngIf="step == 3">
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="floating">Escolaridad</ion-label>
+                  <ion-select interface="popover" formControlName="escolaridad">
+                    <ion-select-option value="escolaridad1"
+                      >escolaridad1</ion-select-option
+                    >
+                    <ion-select-option value="escolaridad2"
+                      >escolaridad2</ion-select-option
+                    >
+                    <ion-select-option value="escolaridad3"
+                      >escolaridad3</ion-select-option
+                    >
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="floating">Nombre del padre</ion-label>
+                  <ion-input formControlName="nombrePadre"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="floating">Nombre de la madre</ion-label>
+                  <ion-input formControlName="nombreMadre"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="floating">Telefono 1</ion-label>
+                  <ion-input formControlName="telefono"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="floating">Telefono 2</ion-label>
+                  <ion-input formControlName="telefonoContacto"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="floating">Estatura</ion-label>
+                  <ion-input formControlName="estatura"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="floating">Vestimenta</ion-label>
+                  <ion-input formControlName="vestimenta"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="floating"> Sueldo semanal</ion-label>
+                  <ion-input formControlName="sueldoSemanal"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <div *ngIf="step == 4">
+              <ion-row>
+                <h5>Dirección</h5>
+              </ion-row>
+              <ion-row formGroupName="direccion">
+                <ion-col size="6">
+                  <ion-item>
+                    <ion-label position="floating">Calle</ion-label>
+                    <ion-input formControlName="calle"></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-item>
+                    <ion-label position="floating">Numero</ion-label>
+                    <ion-input formControlName="numero"></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-item>
+                    <ion-label position="floating">Colonia</ion-label>
+                    <ion-input formControlName="colonia"></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-item>
+                    <ion-label position="floating">Municipio</ion-label>
+                    <ion-input formControlName="municipio"></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-item>
+                    <ion-label position="floating">Estado</ion-label>
+                    <ion-input formControlName="estado"></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-item>
+                    <ion-label position="floating">codigo postal</ion-label>
+                    <ion-input formControlName="postal"></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-item>
+                    <ion-label position="floating"> Latitud</ion-label>
+                    <ion-input formControlName="lat"></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-item>
+                    <ion-label position="floating"> Longitud</ion-label>
+                    <ion-input formControlName="lng"></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </div>
+          </ion-grid>
+          <ion-grid>
+            <ion-row>
+              <ion-col *ngIf="step != 1">
+                <p class="ion-text-center">
+                  <ion-button (click)="previous()">Atras</ion-button>
+                </p>
+              </ion-col>
+              <ion-col>
+                <p class="ion-text-center" *ngIf="step != 4">
+                  <ion-button (click)="next()">Siguiete</ion-button>
+                </p>
+              </ion-col>
+              <ion-col *ngIf="step == 4">
+                <p class="ion-text-center">
+                  <ion-button type="submit">Guardar</ion-button>
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </form>
+        <div>
+          <p>Estado del formulario: {{ persona.valid }}</p>
+          <p>Status: {{ persona.status }}</p>
+
+          <pre>
+						{{ persona.value | json }}
+					</pre
+          >
+        </div>
       </ion-content>
     </ng-template>
   </ion-modal>
