@@ -11,44 +11,90 @@ import {
   templateUrl: './person.component.html',
 })
 export class PersonComponent implements OnInit {
-  step: any = 1;
   persona = new FormGroup({
     calidad: new FormControl('', [Validators.required]),
     incidentid: new FormControl('', [Validators.required]),
-    nombre: new FormControl('', [Validators.required]),
-    apellidoP: new FormControl('', [Validators.required]),
-    apellidoM: new FormControl('', [Validators.required]),
-    alias: new FormControl([''], [Validators.required]),
+    nombre: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.pattern('[a-zA-Z]*'),
+    ]),
+    apellidoP: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.pattern('[a-zA-Z]*'),
+    ]),
+    apellidoM: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.pattern('[a-zA-Z]*'),
+    ]),
+    alias: new FormControl('', [Validators.required]),
     nacionalidad: new FormControl('', [Validators.required]),
-    edad: new FormControl('', [Validators.required]),
-    fechaNacimiento: new FormControl('', [Validators.required]),
+    edad: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[0-9]*'),
+    ]),
+    fechaNacimiento: new FormControl('', [
+      Validators.required,
+      Validators.pattern(
+        '([0-2][0-9]|3[0-1])(/|-)(0[1-9]|1[0-2])(/|-)[0-9]{4}'
+      ),
+    ]),
     genero: new FormControl('', [Validators.required]),
     ocupacion: new FormControl('', [Validators.required]),
     estadoCivil: new FormControl('', [Validators.required]),
     escolaridad: new FormControl('', [Validators.required]),
-    nombrePadre: new FormControl('', [Validators.required]),
-    nombreMadre: new FormControl('', [Validators.required]),
-    telefono: new FormControl('', [Validators.required]),
-    telefonoContacto: new FormControl('', [Validators.required]),
-    estatura: new FormControl('', [Validators.required]),
+    nombrePadre: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.pattern('[a-zA-Z]*'),
+    ]),
+    nombreMadre: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.pattern('[a-zA-Z]*'),
+    ]),
+    telefono: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$'),
+    ]),
+    telefonoContacto: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$'),
+    ]),
+    estatura: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^[0-9]+([.][0-9]+)?$'),
+    ]),
     vestimenta: new FormControl('', [Validators.required]),
     sueldoSemanal: new FormControl('', [Validators.required]),
     direccion: new FormGroup({
       calle: new FormControl('', [Validators.required]),
-      numero: new FormControl('', [Validators.required]),
-      colonia: new FormControl('', [Validators.required]),
+      numero: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[0-9]+'),
+      ]),
+      colonia: new FormControl('', [
+        Validators.required,
+        Validators.pattern('[a-zA-Z]*'),
+      ]),
       municipio: new FormControl('', [Validators.required]),
       estado: new FormControl('', [Validators.required]),
-      postal: new FormControl('', [Validators.required]),
-      lat: new FormControl('', [Validators.required]),
-      lng: new FormControl('', [Validators.required]),
+      postal: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[0-9]{5}$'),
+      ]),
+      lat: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^-?[0-9]{1,3}(?:.[0-9]{1,10})?$'),
+      ]),
+      lng: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^-?[0-9]{1,3}(?:.[0-9]{1,10})?$'),
+      ]),
     }),
   });
-  isModalOpen = false;
-
-  setOpen(isOpen: boolean) {
-    this.isModalOpen = isOpen;
-  }
 
   constructor() {}
 
@@ -59,38 +105,7 @@ export class PersonComponent implements OnInit {
       this.persona.get('nombre')?.invalid && this.persona.get('nombre')?.touched
     );
   }
-  validateData() {
-    if (this.step == 1) {
-      if (this.persona.get('calidad')?.invalid) {
-        this.persona.controls.calidad.markAllAsTouched();
-      } else if (this.persona.get('incidentid')?.invalid) {
-        this.persona.controls.incidentid.markAllAsTouched();
-      } else if (this.persona.get('nombre')?.invalid) {
-        this.persona.controls.nombre.markAllAsTouched();
-      } else if (this.persona.get('apellidoP')?.invalid) {
-        this.persona.controls.apellidoP.markAllAsTouched();
-      } else if (this.persona.get('apellidoM')?.invalid) {
-        this.persona.controls.apellidoM.markAllAsTouched();
-      } else if (this.persona.get('alias')?.invalid) {
-        this.persona.controls.alias.markAllAsTouched();
-      } else {
-        this.step = this.step + 1;
-      }
-    } else if (this.step == 2) {
-      this.step = this.step + 1;
-    } else if (this.step == 3) {
-      this.step = this.step + 1;
-    } else if (this.step == 4) {
-      this.step = this.step + 1;
-    }
-  }
-  previous() {
-    this.step = this.step - 1;
-  }
 
-  next() {
-    this.validateData();
-  }
   guardarDatos() {
     // console.log(this.persona.value);
     if (this.persona.invalid) {
@@ -102,7 +117,6 @@ export class PersonComponent implements OnInit {
         } else {
           control.markAsTouched();
         }
-        console.log(control);
       });
     }
 
