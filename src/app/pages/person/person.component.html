@@ -9,7 +9,7 @@
 
 <ion-content>
   <form autocomplete="off" [formGroup]="persona" (ngSubmit)="guardarDatos()">
-    <ion-grid fixed>
+    <ion-grid [fixed]="true">
       <ion-row justify-content-center>
         <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
           <ion-item>
@@ -44,9 +44,9 @@
             <ion-label position="floating">Nombre</ion-label>
             <ion-input formControlName="nombre"></ion-input>
           </ion-item>
-          <ion-text *ngIf="nombreNoValido" color="danger"
-            ><sub>Nombre es requerido</sub>
-          </ion-text>
+          <ion-note *ngIf="nombreNoValido" color="danger"
+            >Nombre es requerido</ion-note
+          >
         </ion-col>
 
         <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
@@ -183,21 +183,29 @@
         <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
           <ion-item>
             <ion-label position="floating">Telefono 1</ion-label>
-            <ion-input formControlName="telefono"></ion-input>
+            <ion-input
+              type="tel"
+              formControlName="telefono"
+              maxlength="10"
+            ></ion-input>
           </ion-item>
         </ion-col>
 
         <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
           <ion-item>
             <ion-label position="floating">Telefono 2</ion-label>
-            <ion-input formControlName="telefonoContacto"></ion-input>
+            <ion-input
+              type="tel"
+              formControlName="telefonoContacto"
+              maxlength="10"
+            ></ion-input>
           </ion-item>
         </ion-col>
 
         <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
           <ion-item>
             <ion-label position="floating">Estatura</ion-label>
-            <ion-input formControlName="estatura"></ion-input>
+            <ion-input type="number" formControlName="estatura"></ion-input>
           </ion-item>
         </ion-col>
 
@@ -211,7 +219,10 @@
         <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
           <ion-item>
             <ion-label position="floating"> Sueldo semanal</ion-label>
-            <ion-input formControlName="sueldoSemanal"></ion-input>
+            <ion-input
+              type="number"
+              formControlName="sueldoSemanal"
+            ></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -265,7 +276,7 @@
         <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
           <ion-item>
             <ion-label position="floating">codigo postal</ion-label>
-            <ion-input formControlName="postal"></ion-input>
+            <ion-input formControlName="postal" maxlength="5"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
@@ -284,12 +295,21 @@
     </ion-grid>
     <ion-grid>
       <ion-row>
-        <ion-col>
-          <p class="ion-text-center">
-            <ion-button type="submit">Guardar</ion-button>
-          </p>
+        <ion-col class="ion-text-center">
+          <ion-button type="submit" [disabled]="persona.invalid" shape="round"
+            >Guardar</ion-button
+          >
         </ion-col>
       </ion-row>
     </ion-grid>
   </form>
+  <div>
+    <p>Estado del formulario: {{ persona.valid }}</p>
+    <p>Status: {{ persona.status }}</p>
+
+    <pre>
+						{{ persona.value | json }}
+					</pre
+    >
+  </div>
 </ion-content>
