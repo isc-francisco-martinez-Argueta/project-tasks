@@ -1,17 +1,12 @@
 import { PersonComponent } from './pages/person/person.component';
-import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'person',
     pathMatch: 'full',
-  },
-  {
-    path: 'home',
-    component: HomeComponent,
   },
   {
     path: 'person',

@@ -12,7 +12,6 @@ import {
 })
 export class PersonComponent implements OnInit {
   persona: FormGroup = new FormGroup({});
-
   constructor(private fb: FormBuilder) {
     this.crearFormulario();
   }
