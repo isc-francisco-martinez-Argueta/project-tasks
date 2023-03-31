@@ -226,8 +226,15 @@
           </ion-item>
         </ion-col>
       </ion-row>
-
-      <ion-row formGroupName="direccion">
+      <!-- Dirección -->
+      <ion-row formGroupName="direccion" class="ion-margin-bottom">
+        <ion-col size="12" class="ion-margin-top">
+          <ion-item>
+            <ion-text color="dark">
+              <h3>Dirección</h3>
+            </ion-text>
+          </ion-item>
+        </ion-col>
         <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
           <ion-item>
             <ion-label position="floating">Calle</ion-label>
@@ -292,13 +299,111 @@
           </ion-item>
         </ion-col>
       </ion-row>
+      <!-- Identificación -->
+      <ion-row formGroupName="identificacion" class="ion-margin-bottom">
+        <ion-col size="12" class="ion-margin-top">
+          <ion-item>
+            <ion-text color="dark">
+              <h3>Identificación</h3>
+            </ion-text>
+          </ion-item>
+        </ion-col>
+        <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+          <ion-item>
+            <ion-label position="floating">Tipo</ion-label>
+            <ion-select interface="popover" formControlName="tipo">
+              <ion-select-option value="tipo1">tipo1</ion-select-option>
+              <ion-select-option value="tipo2">tipo2</ion-select-option>
+              <ion-select-option value="tipo3">tipo3</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+
+        <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+          <ion-item>
+            <ion-label position="floating">Emisor</ion-label>
+            <ion-input formControlName="emisor"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+          <ion-item>
+            <ion-label position="floating">folio</ion-label>
+            <ion-input formControlName="folio"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+          <ion-item>
+            <ion-label position="floating">Observaciones</ion-label>
+            <ion-input formControlName="observaciones"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <!-- señasParticulares -->
+      <ion-row formGroupName="señasParticulares" class="ion-margin-bottom">
+        <ion-col size="12" class="ion-margin-top">
+          <ion-item>
+            <ion-text color="dark">
+              <h3>Señas particulares</h3>
+            </ion-text>
+          </ion-item>
+        </ion-col>
+        <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+          <ion-item>
+            <ion-label position="floating">Tipo</ion-label>
+            <ion-select interface="popover" formControlName="tipo">
+              <ion-select-option value="tipo1">tipo1</ion-select-option>
+              <ion-select-option value="tipo2">tipo2</ion-select-option>
+              <ion-select-option value="tipo3">tipo3</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+
+        <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+          <ion-item>
+            <ion-label position="floating">Emisor</ion-label>
+            <ion-input formControlName="ubicacion"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+          <ion-item>
+            <ion-label position="floating">Observaciones</ion-label>
+            <ion-input formControlName="observaciones"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+          <ion-item>
+            <ion-label position="floating">archivo</ion-label>
+            <ion-input formControlName="archivo"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <!-- señasParticulares -->
+      <ion-row formGroupName="antecedentes" class="ion-margin-bottom">
+        <ion-col size="12" class="ion-margin-top">
+          <ion-item>
+            <ion-text color="dark">
+              <h3>Antecedentes</h3>
+            </ion-text>
+          </ion-item>
+        </ion-col>
+        <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+          <ion-item>
+            <ion-label position="floating">Incidente</ion-label>
+            <ion-input formControlName="incidente"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+          <ion-item>
+            <ion-label position="floating">Diagnostico medico</ion-label>
+            <ion-input formControlName="diagnosticoMedico"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
     </ion-grid>
     <ion-grid>
       <ion-row>
         <ion-col class="ion-text-center">
-          <ion-button type="submit" [disabled]="persona.invalid" shape="round"
-            >Guardar</ion-button
-          >
+          <ion-button type="submit" shape="round">Guardar</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>

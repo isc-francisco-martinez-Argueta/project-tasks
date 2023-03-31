@@ -102,6 +102,35 @@ export class PersonComponent implements OnInit {
           Validators.pattern('^-?[0-9]{1,3}(?:.[0-9]{1,10})?$'),
         ]),
       }),
+      identificacion: new FormGroup({
+        tipo: new FormControl('', [Validators.required]),
+        emisor: new FormControl('', [Validators.required]),
+        folio: new FormControl('', [Validators.required]),
+        observaciones: new FormControl('', [Validators.required]),
+      }),
+      señasParticulares: new FormGroup({
+        tipo: new FormControl('', [Validators.required]),
+        ubicacion: new FormControl('', [Validators.required]),
+        observaciones: new FormControl('', [Validators.required]),
+        archivo: new FormControl('', [Validators.required]),
+      }),
+      antecedentes: new FormGroup({
+        incidente: new FormControl('', [Validators.required]),
+        diagnosticoMedico: new FormControl('', [Validators.required]),
+        resolucionJuez: new FormGroup({
+          resolucionJuez: new FormControl('', [Validators.required]),
+          fechaHora: new FormControl('', [Validators.required]),
+          horasDetencion: new FormControl('', [Validators.required]),
+          fundamento: new FormControl('', [Validators.required]),
+        }),
+        objetosRemitidos: new FormGroup({
+          descripcion: new FormControl('', [Validators.required]),
+          tipo: new FormControl('', [Validators.required]),
+        }),
+      }),
+      activo: new FormControl('', [Validators.required]),
+      proceso: new FormControl('', [Validators.required]),
+      observaciones: new FormControl('', [Validators.required]),
     });
   }
 
