@@ -4,6 +4,7 @@ import {
   FormBuilder,
   FormGroup,
   Validators,
+  FormArray,
 } from '@angular/forms';
 
 @Component({
@@ -102,35 +103,30 @@ export class PersonComponent implements OnInit {
           Validators.pattern('^-?[0-9]{1,3}(?:.[0-9]{1,10})?$'),
         ]),
       }),
-      identificacion: new FormGroup({
-        tipo: new FormControl('', [Validators.required]),
-        emisor: new FormControl('', [Validators.required]),
-        folio: new FormControl('', [Validators.required]),
-        observaciones: new FormControl('', [Validators.required]),
-      }),
+      identificaciones: new FormArray([], [Validators.required]),
       señasParticulares: new FormGroup({
-        tipo: new FormControl('', [Validators.required]),
-        ubicacion: new FormControl('', [Validators.required]),
-        observaciones: new FormControl('', [Validators.required]),
-        archivo: new FormControl('', [Validators.required]),
+        tipo: new FormControl(''),
+        ubicacion: new FormControl(''),
+        observaciones: new FormControl(''),
+        archivo: new FormControl(''),
       }),
       antecedentes: new FormGroup({
-        incidente: new FormControl('', [Validators.required]),
-        diagnosticoMedico: new FormControl('', [Validators.required]),
+        incidente: new FormControl(''),
+        diagnosticoMedico: new FormControl(''),
         resolucionJuez: new FormGroup({
-          resolucionJuez: new FormControl('', [Validators.required]),
-          fechaHora: new FormControl('', [Validators.required]),
-          horasDetencion: new FormControl('', [Validators.required]),
-          fundamento: new FormControl('', [Validators.required]),
+          resolucionJuez: new FormControl(''),
+          fechaHora: new FormControl(''),
+          horasDetencion: new FormControl(''),
+          fundamento: new FormControl(''),
         }),
         objetosRemitidos: new FormGroup({
-          descripcion: new FormControl('', [Validators.required]),
-          tipo: new FormControl('', [Validators.required]),
+          descripcion: new FormControl(''),
+          tipo: new FormControl(''),
         }),
       }),
-      activo: new FormControl('', [Validators.required]),
-      proceso: new FormControl('', [Validators.required]),
-      observaciones: new FormControl('', [Validators.required]),
+      activo: new FormControl(''),
+      proceso: new FormControl(''),
+      observaciones: new FormControl(''),
     });
   }
 
@@ -138,6 +134,21 @@ export class PersonComponent implements OnInit {
     return (
       this.persona.get('nombre')?.invalid && this.persona.get('nombre')?.touched
     );
+  }
+  initFormId(): FormGroup {
+    return new FormGroup({
+      tipo: new FormControl('', [Validators.required]),
+      emisor: new FormControl('', [Validators.required]),
+      folio: new FormControl('', [Validators.required]),
+      observaciones: new FormControl('', [Validators.required]),
+    });
+  }
+  addId(): void {
+    const refId = this.persona.get('identificaciones') as FormArray;
+    refId.push(this.initFormId());
+  }
+  getCtrl(key: string, form: FormGroup): any {
+    return form.get(key);
   }
 
   guardarDatos() {
