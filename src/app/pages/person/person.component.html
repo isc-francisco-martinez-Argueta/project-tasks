@@ -311,14 +311,13 @@
           </ion-text>
         </ion-col>
         <ion-col size-md="2" size-xs="5">
-          <ion-button (click)="addId()">
-            <ion-icon name="add-circle-outline"></ion-icon>
+          <ion-button expand="full" shape="round" (click)="addCard(1)">
+            <ion-icon slot="start" name="add-circle-outline"></ion-icon>
             Agregar
           </ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
-
     <div formArrayName="identificaciones">
       <ion-grid
         [fixed]="true"
@@ -363,7 +362,11 @@
                   </ion-textarea>
                 </ion-item>
               </ion-col>
-              <ion-button (click)="removeId(formChild)" color="danger">
+              <ion-button
+                (click)="removeCard(1, formChild)"
+                color="danger"
+                [hidden]="formChild == 0"
+              >
                 <ion-icon name="trash-outline"></ion-icon>
                 elminar
               </ion-button>
@@ -372,7 +375,7 @@
         </ion-card>
       </ion-grid>
     </div>
-
+    <!-- Señas particulares -->
     <ion-grid [fixed]="true">
       <ion-row class="ion-align-items-center ion-justify-content-between">
         <ion-col size-md="2" size-xs="7">
@@ -381,46 +384,66 @@
           </ion-text>
         </ion-col>
         <ion-col size-md="2" size-xs="5">
-          <ion-button>
-            <ion-icon name="add-circle-outline"></ion-icon>
+          <ion-button expand="full" shape="round" (click)="addCard(2)">
+            <ion-icon slot="start" name="add-circle-outline"></ion-icon>
             Agregar
           </ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
-    <ion-grid [fixed]="true">
-      <ion-row formGroupName="señasParticulares" class="ion-margin-bottom">
-        <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
-          <ion-item>
-            <ion-label position="floating">Tipo</ion-label>
-            <ion-select interface="popover" formControlName="tipo">
-              <ion-select-option value="tipo1">tipo1</ion-select-option>
-              <ion-select-option value="tipo2">tipo2</ion-select-option>
-              <ion-select-option value="tipo3">tipo3</ion-select-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
+    <div formArrayName="señasParticulares">
+      <ion-grid
+        [fixed]="true"
+        *ngFor="
+          let identificacion of getCtrl('señasParticulares', persona)?.controls;
+          index as formChild
+        "
+      >
+        <ion-card>
+          <ion-card-content>
+            <ion-row class="ion-margin-bottom" [formGroupName]="formChild">
+              <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                <ion-item>
+                  <ion-label position="floating">Tipo</ion-label>
+                  <ion-select interface="popover" formControlName="tipo">
+                    <ion-select-option value="tipo1">tipo1</ion-select-option>
+                    <ion-select-option value="tipo2">tipo2</ion-select-option>
+                    <ion-select-option value="tipo3">tipo3</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
 
-        <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
-          <ion-item>
-            <ion-label position="floating">Emisor</ion-label>
-            <ion-input formControlName="ubicacion"></ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
-          <ion-item>
-            <ion-label position="floating">Observaciones</ion-label>
-            <ion-input formControlName="observaciones"></ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
-          <ion-item>
-            <ion-label position="floating">archivo</ion-label>
-            <ion-input formControlName="archivo"></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+              <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                <ion-item>
+                  <ion-label position="floating">Emisor</ion-label>
+                  <ion-input formControlName="ubicacion"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                <ion-item>
+                  <ion-label position="floating">Observaciones</ion-label>
+                  <ion-input formControlName="observaciones"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                <ion-item>
+                  <ion-label position="floating">archivo</ion-label>
+                  <ion-input formControlName="archivo"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-button
+                (click)="removeCard(2, formChild)"
+                color="danger"
+                [hidden]="formChild == 0"
+              >
+                <ion-icon name="trash-outline"></ion-icon>
+                elminar
+              </ion-button>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-grid>
+    </div>
     <!-- señasParticulares -->
     <ion-grid [fixed]="true">
       <ion-row formGroupName="antecedentes" class="ion-margin-bottom">
@@ -456,7 +479,7 @@
       </ion-row>
     </ion-grid>
   </form>
-  <!-- <div>
+  <div>
     <p>Estado del formulario: {{ persona.valid }}</p>
     <p>Status: {{ persona.status }}</p>
 
@@ -464,5 +487,5 @@
 						{{ persona.value | json }}
 					</pre
     >
-  </div> -->
+  </div>
 </ion-content>

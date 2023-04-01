@@ -15,6 +15,8 @@ export class PersonComponent implements OnInit {
   persona: FormGroup = new FormGroup({});
   constructor(private fb: FormBuilder) {
     this.crearFormulario();
+    this.addCard(1);
+    this.addCard(2);
   }
 
   ngOnInit(): void {}
@@ -103,13 +105,8 @@ export class PersonComponent implements OnInit {
           Validators.pattern('^-?[0-9]{1,3}(?:.[0-9]{1,10})?$'),
         ]),
       }),
-      identificaciones: new FormArray([], [Validators.required]),
-      señasParticulares: new FormGroup({
-        tipo: new FormControl(''),
-        ubicacion: new FormControl(''),
-        observaciones: new FormControl(''),
-        archivo: new FormControl(''),
-      }),
+      identificaciones: new FormArray([]),
+      señasParticulares: new FormArray([]),
       antecedentes: new FormGroup({
         incidente: new FormControl(''),
         diagnosticoMedico: new FormControl(''),
@@ -143,13 +140,50 @@ export class PersonComponent implements OnInit {
       observaciones: new FormControl('', [Validators.required]),
     });
   }
-  addId(): void {
-    const refId = this.persona.get('identificaciones') as FormArray;
-    refId.push(this.initFormId());
+  initFormSeñas(): FormGroup {
+    return new FormGroup({
+      tipo: new FormControl(''),
+      ubicacion: new FormControl(''),
+      observaciones: new FormControl(''),
+      archivo: new FormControl(''),
+    });
   }
-  removeId(event: number): void {
-    const refId = this.persona.get('identificaciones') as FormArray;
-    refId.removeAt(event);
+  addCard(val: number): void {
+    switch (val) {
+      case 1:
+        const refId = this.persona.get('identificaciones') as FormArray;
+        refId.push(this.initFormId());
+        break;
+      case 2:
+        const refId2 = this.persona.get('señasParticulares') as FormArray;
+        refId2.push(this.initFormSeñas());
+        break;
+      case 3:
+        // const refId2 = this.persona.get('señasParticulares') as FormArray;
+        // refId2.push(this.initFormSeñas());
+        break;
+
+      default:
+        break;
+    }
+  }
+  removeCard(card: number, event: number): void {
+    switch (card) {
+      case 1:
+        const refId = this.persona.get('identificaciones') as FormArray;
+        refId.removeAt(event);
+        break;
+      case 2:
+        const refId2 = this.persona.get('señasParticulares') as FormArray;
+        refId2.removeAt(event);
+        break;
+      case 3:
+        // const refId2 = this.persona.get('señasParticulares') as FormArray;
+        // refId2.removeAt(event);
+        break;
+      default:
+        break;
+    }
   }
   getCtrl(key: string, form: FormGroup): any {
     return form.get(key);
