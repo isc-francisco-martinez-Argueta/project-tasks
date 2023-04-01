@@ -147,9 +147,9 @@ export class PersonComponent implements OnInit {
     const refId = this.persona.get('identificaciones') as FormArray;
     refId.push(this.initFormId());
   }
-  removeId(): void {
+  removeId(event: number): void {
     const refId = this.persona.get('identificaciones') as FormArray;
-    refId.removeAt(1);
+    refId.removeAt(event);
   }
   getCtrl(key: string, form: FormGroup): any {
     return form.get(key);

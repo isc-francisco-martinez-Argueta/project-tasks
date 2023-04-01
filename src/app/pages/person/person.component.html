@@ -303,15 +303,14 @@
       </ion-row>
     </ion-grid>
     <!-- Identificación -->
-
     <ion-grid [fixed]="true">
       <ion-row class="ion-align-items-center ion-justify-content-between">
-        <ion-col size-sm="8" size-lg="10">
+        <ion-col size-md="2" size-xs="7">
           <ion-text color="dark">
             <h3>Identificación</h3>
           </ion-text>
         </ion-col>
-        <ion-col size="4" size-lg="2">
+        <ion-col size-md="2" size-xs="5">
           <ion-button (click)="addId()">
             <ion-icon name="add-circle-outline"></ion-icon>
             Agregar
@@ -319,6 +318,7 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+
     <div formArrayName="identificaciones">
       <ion-grid
         [fixed]="true"
@@ -327,49 +327,64 @@
           index as formChild
         "
       >
-        <ion-row class="ion-margin-bottom" [formGroupName]="formChild">
-          <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
-            <ion-item>
-              <ion-label position="floating">Tipo</ion-label>
-              <ion-select interface="popover" formControlName="tipo">
-                <ion-select-option value="tipo1">tipo1</ion-select-option>
-                <ion-select-option value="tipo2">tipo2</ion-select-option>
-                <ion-select-option value="tipo3">tipo3</ion-select-option>
-              </ion-select>
-            </ion-item>
-          </ion-col>
-          <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
-            <ion-item>
-              <ion-label position="floating">Emisor</ion-label>
-              <ion-input formControlName="emisor"></ion-input>
-            </ion-item>
-          </ion-col>
-          <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
-            <ion-item>
-              <ion-label position="floating">folio</ion-label>
-              <ion-input formControlName="folio"></ion-input>
-            </ion-item>
-          </ion-col>
-          <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
-            <ion-item>
-              <ion-label position="floating">Observaciones</ion-label>
-              <ion-input formControlName="observaciones"></ion-input>
-            </ion-item>
-          </ion-col>
-          <!-- <ion-button (click)="removeId()">elminar</ion-button> -->
-        </ion-row>
+        <ion-card>
+          <ion-card-content>
+            <ion-row class="ion-margin-bottom" [formGroupName]="formChild">
+              <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                <ion-item>
+                  <ion-label position="floating">Tipo</ion-label>
+                  <ion-select interface="popover" formControlName="tipo">
+                    <ion-select-option value="tipo1">tipo1</ion-select-option>
+                    <ion-select-option value="tipo2">tipo2</ion-select-option>
+                    <ion-select-option value="tipo3">tipo3</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+              <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                <ion-item>
+                  <ion-label position="floating">Emisor</ion-label>
+                  <ion-input formControlName="emisor"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                <ion-item>
+                  <ion-label position="floating">folio</ion-label>
+                  <ion-input formControlName="folio"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                <ion-item>
+                  <ion-label position="floating">Observaciones</ion-label>
+                  <ion-input formControlName="observaciones"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-button (click)="removeId(formChild)" color="danger">
+                <ion-icon name="trash-outline"></ion-icon>
+                elminar
+              </ion-button>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
       </ion-grid>
     </div>
-    <!-- señasParticulares -->
+
+    <ion-grid [fixed]="true">
+      <ion-row class="ion-align-items-center ion-justify-content-between">
+        <ion-col size-md="2" size-xs="7">
+          <ion-text color="dark">
+            <h3>Señas particulares</h3>
+          </ion-text>
+        </ion-col>
+        <ion-col size-md="2" size-xs="5">
+          <ion-button>
+            <ion-icon name="add-circle-outline"></ion-icon>
+            Agregar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
     <ion-grid [fixed]="true">
       <ion-row formGroupName="señasParticulares" class="ion-margin-bottom">
-        <ion-col size="12" class="ion-margin-top">
-          <ion-item>
-            <ion-text color="dark">
-              <h3>Señas particulares</h3>
-            </ion-text>
-          </ion-item>
-        </ion-col>
         <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
           <ion-item>
             <ion-label position="floating">Tipo</ion-label>
