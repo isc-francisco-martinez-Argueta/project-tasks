@@ -13,74 +13,91 @@ import {
 })
 export class PersonComponent implements OnInit {
   persona: FormGroup = new FormGroup({});
+
   constructor(private fb: FormBuilder) {
     this.crearFormulario();
     this.addCard(1);
     this.addCard(2);
+    this.addCard(3);
   }
 
   ngOnInit(): void {}
 
   crearFormulario() {
     this.persona = this.fb.group({
-      calidad: new FormControl('', [Validators.required]),
-      incidentid: new FormControl('', [Validators.required]),
-      nombre: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.pattern('[a-zA-Z]*'),
-      ]),
-      apellidoP: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.pattern('[a-zA-Z]*'),
-      ]),
-      apellidoM: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.pattern('[a-zA-Z]*'),
-      ]),
-      alias: new FormControl('', [Validators.required]),
-      nacionalidad: new FormControl('', [Validators.required]),
-      edad: new FormControl('', [
-        Validators.required,
-        Validators.pattern('[0-9]*'),
-      ]),
-      fechaNacimiento: new FormControl('', [
-        Validators.required,
-        Validators.pattern(
-          '([0-2][0-9]|3[0-1])(/|-)(0[1-9]|1[0-2])(/|-)[0-9]{4}'
-        ),
-      ]),
-      genero: new FormControl('', [Validators.required]),
-      ocupacion: new FormControl('', [Validators.required]),
-      estadoCivil: new FormControl('', [Validators.required]),
-      escolaridad: new FormControl('', [Validators.required]),
-      nombrePadre: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.pattern('[a-zA-Z]*'),
-      ]),
-      nombreMadre: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.pattern('[a-zA-Z]*'),
-      ]),
-      telefono: new FormControl('', [
-        Validators.required,
-        Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$'),
-      ]),
-      telefonoContacto: new FormControl('', [
-        Validators.required,
-        Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$'),
-      ]),
-      estatura: new FormControl('', [
-        Validators.required,
-        Validators.pattern('^[0-9]+([.][0-9]+)?$'),
-      ]),
-      vestimenta: new FormControl('', [Validators.required]),
-      sueldoSemanal: new FormControl('', [Validators.required]),
-      direccion: new FormGroup({
+      calidad: ['', [Validators.required]],
+      incidentid: ['', [Validators.required]],
+      nombre: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.pattern('[a-zA-Z\u00C0-\u017F ]{3,254}'),
+        ],
+      ],
+      apellidoP: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.pattern('[a-zA-Z\u00C0-\u017F]*'),
+        ],
+      ],
+      apellidoM: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.pattern('[a-zA-Z\u00C0-\u017F]*'),
+        ],
+      ],
+      alias: ['', [Validators.required]],
+      nacionalidad: ['', [Validators.required]],
+      edad: ['', [Validators.required, Validators.pattern('[0-9]*')]],
+      fechaNacimiento: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            '([0-2][0-9]|3[0-1])(/|-)(0[1-9]|1[0-2])(/|-)[0-9]{4}'
+          ),
+        ],
+      ],
+      genero: ['', [Validators.required]],
+      ocupacion: ['', [Validators.required]],
+      estadoCivil: ['', [Validators.required]],
+      escolaridad: ['', [Validators.required]],
+      nombrePadre: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.pattern('[a-zA-Z\u00C0-\u017F ]{3,254}'),
+        ],
+      ],
+      nombreMadre: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.pattern('[a-zA-Z\u00C0-\u017F ]{3,254}'),
+        ],
+      ],
+      telefono: [
+        '',
+        [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')],
+      ],
+      telefonoContacto: [
+        '',
+        [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')],
+      ],
+      estatura: [
+        '',
+        [Validators.required, Validators.pattern('^[0-9]+([.][0-9]+)?$')],
+      ],
+      vestimenta: ['', [Validators.required]],
+      sueldoSemanal: ['', [Validators.required]],
+      direccion: this.fb.group({
         calle: new FormControl('', [Validators.required]),
         numero: new FormControl('', [
           Validators.required,
@@ -94,7 +111,8 @@ export class PersonComponent implements OnInit {
         estado: new FormControl('', [Validators.required]),
         postal: new FormControl('', [
           Validators.required,
-          Validators.pattern('^[0-9]{5}$'),
+          Validators.minLength(5),
+          Validators.pattern(/^[0-9]{5}$/),
         ]),
         lat: new FormControl('', [
           Validators.required,
@@ -105,25 +123,12 @@ export class PersonComponent implements OnInit {
           Validators.pattern('^-?[0-9]{1,3}(?:.[0-9]{1,10})?$'),
         ]),
       }),
-      identificaciones: new FormArray([]),
-      señasParticulares: new FormArray([]),
-      antecedentes: new FormGroup({
-        incidente: new FormControl(''),
-        diagnosticoMedico: new FormControl(''),
-        resolucionJuez: new FormGroup({
-          resolucionJuez: new FormControl(''),
-          fechaHora: new FormControl(''),
-          horasDetencion: new FormControl(''),
-          fundamento: new FormControl(''),
-        }),
-        objetosRemitidos: new FormGroup({
-          descripcion: new FormControl(''),
-          tipo: new FormControl(''),
-        }),
-      }),
-      activo: new FormControl(''),
-      proceso: new FormControl(''),
-      observaciones: new FormControl(''),
+      identificaciones: this.fb.array([]),
+      señasParticulares: this.fb.array([]),
+      antecedentes: this.fb.array([]),
+      activo: [''],
+      proceso: [''],
+      observaciones: [''],
     });
   }
 
@@ -148,6 +153,19 @@ export class PersonComponent implements OnInit {
       archivo: new FormControl(''),
     });
   }
+  initFormAntecedentes(): FormGroup {
+    return this.fb.group({
+      incidente: [''],
+      diagnosticoMedico: [''],
+      resolucionJuez: this.fb.group({
+        resolucionJuez: ['', [Validators.required]],
+        fechaHora: [''],
+        horasDetencion: [''],
+        fundamento: [''],
+      }),
+    });
+  }
+
   addCard(val: number): void {
     switch (val) {
       case 1:
@@ -159,8 +177,8 @@ export class PersonComponent implements OnInit {
         refId2.push(this.initFormSeñas());
         break;
       case 3:
-        // const refId2 = this.persona.get('señasParticulares') as FormArray;
-        // refId2.push(this.initFormSeñas());
+        const refId3 = this.persona.get('antecedentes') as FormArray;
+        refId3.push(this.initFormAntecedentes());
         break;
 
       default:
@@ -178,10 +196,8 @@ export class PersonComponent implements OnInit {
         refId2.removeAt(event);
         break;
       case 3:
-        // const refId2 = this.persona.get('señasParticulares') as FormArray;
-        // refId2.removeAt(event);
-        break;
-      default:
+        const refId3 = this.persona.get('antecedentes') as FormArray;
+        refId3.removeAt(event);
         break;
     }
   }
@@ -190,7 +206,6 @@ export class PersonComponent implements OnInit {
   }
 
   guardarDatos() {
-    // console.log(this.persona.value);
     if (this.persona.invalid) {
       return Object.values(this.persona.controls).forEach((control) => {
         if (control instanceof FormGroup) {
@@ -202,6 +217,7 @@ export class PersonComponent implements OnInit {
         }
       });
     }
+    console.log(this.persona.value);
 
     //posteo de info
     // this.persona.reset({});
