@@ -1,0 +1,800 @@
+<app-header titulo="Persona"></app-header>
+
+<ion-content>
+    <form autocomplete="off" [formGroup]="persona" (ngSubmit)="guardarDatos()">
+        <ion-grid [fixed]="true">
+            <ion-row class="ion-align-items-center ion-justify-content-between">
+                <ion-col size-md="4" size-xs="12">
+                    <ion-text color="dark">
+                        <h3>Datos</h3>
+                    </ion-text>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-grid [fixed]="true">
+            <ion-row justify-content-center>
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Calidad</ion-label>
+                        <ion-select
+                            interface="popover"
+                            formControlName="calidad"
+                        >
+                            <ion-select-option value="calidad1"
+                                >Calidad1</ion-select-option
+                            >
+                            <ion-select-option value="calidad2"
+                                >Calidad2</ion-select-option
+                            >
+                            <ion-select-option value="calidad3"
+                                >Calidad3</ion-select-option
+                            >
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Incidente</ion-label>
+                        <ion-select
+                            interface="popover"
+                            formControlName="incidentid"
+                        >
+                            <ion-select-option value="incidente1"
+                                >incidente1</ion-select-option
+                            >
+                            <ion-select-option value="incidente2"
+                                >incidente2</ion-select-option
+                            >
+                            <ion-select-option value="incidente3"
+                                >incidente3</ion-select-option
+                            >
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Nombre</ion-label>
+                        <ion-input formControlName="nombre"></ion-input>
+                    </ion-item>
+                    <ion-note *ngIf="nombreNoValido" color="danger"
+                        >Nombre es requerido</ion-note
+                    >
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating"
+                            >Apellido paterno</ion-label
+                        >
+                        <ion-input formControlName="apellidoP"></ion-input>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating"
+                            >Apellido materno</ion-label
+                        >
+                        <ion-input formControlName="apellidoM"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <ion-grid [fixed]="true">
+            <ion-row>
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Alias</ion-label>
+                        <ion-input formControlName="alias"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-grid [fixed]="true">
+            <ion-row>
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Nacionalidad</ion-label>
+                        <ion-select
+                            interface="popover"
+                            formControlName="nacionalidad"
+                        >
+                            <ion-select-option value="nacionalidad1"
+                                >Nacionalidad1</ion-select-option
+                            >
+                            <ion-select-option value="nacionalidad2"
+                                >Nacionalidad2</ion-select-option
+                            >
+                            <ion-select-option value="nacionalidad3"
+                                >Nacionalidad3</ion-select-option
+                            >
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Edad</ion-label>
+                        <ion-input formControlName="edad"></ion-input>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating"
+                            >Fecha de nacimiento</ion-label
+                        >
+                        <ion-input
+                            formControlName="fechaNacimiento"
+                            placeholder="dd/mm/aaaa"
+                        ></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Hora</ion-label>
+                        <ion-input
+                            formControlName="hora"
+                            placeholder="hh/mm"
+                        ></ion-input>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Genero</ion-label>
+                        <ion-select
+                            interface="popover"
+                            formControlName="genero"
+                        >
+                            <ion-select-option value="genero1"
+                                >Genero1</ion-select-option
+                            >
+                            <ion-select-option value="genero2"
+                                >Genero2</ion-select-option
+                            >
+                            <ion-select-option value="genero3"
+                                >Genero3</ion-select-option
+                            >
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Ocupacion</ion-label>
+                        <ion-select
+                            interface="popover"
+                            formControlName="ocupacion"
+                        >
+                            <ion-select-option value="ocupacion1"
+                                >Ocupacion1</ion-select-option
+                            >
+                            <ion-select-option value="ocupacion2"
+                                >Ocupacion2</ion-select-option
+                            >
+                            <ion-select-option value="ocupacion3"
+                                >Ocupacion3</ion-select-option
+                            >
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Estado Civil</ion-label>
+                        <ion-select
+                            interface="popover"
+                            formControlName="estadoCivil"
+                        >
+                            <ion-select-option value="estadoCivil1"
+                                >EstadoCivil1</ion-select-option
+                            >
+                            <ion-select-option value="estadoCivil2"
+                                >EstadoCivil2</ion-select-option
+                            >
+                            <ion-select-option value="estadoCivil3"
+                                >EstadoCivil3</ion-select-option
+                            >
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Escolaridad</ion-label>
+                        <ion-select
+                            interface="popover"
+                            formControlName="escolaridad"
+                        >
+                            <ion-select-option value="escolaridad1"
+                                >escolaridad1</ion-select-option
+                            >
+                            <ion-select-option value="escolaridad2"
+                                >escolaridad2</ion-select-option
+                            >
+                            <ion-select-option value="escolaridad3"
+                                >escolaridad3</ion-select-option
+                            >
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating"
+                            >Nombre del padre</ion-label
+                        >
+                        <ion-input formControlName="nombrePadre"></ion-input>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating"
+                            >Nombre de la madre</ion-label
+                        >
+                        <ion-input formControlName="nombreMadre"></ion-input>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Telefono 1</ion-label>
+                        <ion-input
+                            type="tel"
+                            formControlName="telefono"
+                            maxlength="10"
+                        ></ion-input>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Telefono 2</ion-label>
+                        <ion-input
+                            type="tel"
+                            formControlName="telefonoContacto"
+                            maxlength="10"
+                        ></ion-input>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Estatura</ion-label>
+                        <ion-input
+                            type="number"
+                            formControlName="estatura"
+                        ></ion-input>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Vestimenta</ion-label>
+                        <ion-input formControlName="vestimenta"></ion-input>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">
+                            Sueldo semanal</ion-label
+                        >
+                        <ion-input
+                            type="number"
+                            formControlName="sueldoSemanal"
+                        ></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <!-- Dirección -->
+        <ion-grid [fixed]="true">
+            <ion-row class="ion-align-items-center ion-justify-content-between">
+                <ion-col size-md="4" size-xs="12">
+                    <ion-text color="dark">
+                        <h3>Dirección</h3>
+                    </ion-text>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-grid [fixed]="true">
+            <ion-row formGroupName="direccion" class="ion-margin-bottom">
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Calle</ion-label>
+                        <ion-input formControlName="calle"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Numero</ion-label>
+                        <ion-input formControlName="numero"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Colonia</ion-label>
+                        <ion-input formControlName="colonia"></ion-input>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Municipio</ion-label>
+                        <ion-select
+                            interface="popover"
+                            formControlName="municipio"
+                        >
+                            <ion-select-option value="municipio1"
+                                >Municipio1</ion-select-option
+                            >
+                            <ion-select-option value="municipio2"
+                                >Municipio2</ion-select-option
+                            >
+                            <ion-select-option value="municipio3"
+                                >Municipio3</ion-select-option
+                            >
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Estado</ion-label>
+                        <ion-select
+                            interface="popover"
+                            formControlName="estado"
+                        >
+                            <ion-select-option value="estado1"
+                                >Estado1</ion-select-option
+                            >
+                            <ion-select-option value="estado2"
+                                >Estado2</ion-select-option
+                            >
+                            <ion-select-option value="estado3"
+                                >Estado3</ion-select-option
+                            >
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">codigo postal</ion-label>
+                        <ion-input
+                            formControlName="postal"
+                            maxlength="5"
+                        ></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating"> Latitud</ion-label>
+                        <ion-input formControlName="lat"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating"> Longitud</ion-label>
+                        <ion-input formControlName="lng"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <!-- Identificación -->
+        <ion-grid [fixed]="true">
+            <ion-row class="ion-align-items-center ion-justify-content-between">
+                <ion-col size-md="2" size-xs="7">
+                    <ion-text color="dark">
+                        <h3>Identificación</h3>
+                    </ion-text>
+                </ion-col>
+                <ion-col size-md="2" size-xs="5">
+                    <ion-button
+                        expand="full"
+                        shape="round"
+                        (click)="addCard(1)"
+                        [hidden]="this.persona.get('identificaciones')?.invalid"
+                    >
+                        <ion-icon
+                            slot="start"
+                            name="add-circle-outline"
+                        ></ion-icon>
+                        Agregar
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <div formArrayName="identificaciones">
+            <ion-grid
+                [fixed]="true"
+                *ngFor="
+          let identificacion of getCtrl('identificaciones', persona)?.controls;
+          index as formChild
+        "
+            >
+                <ion-card>
+                    <ion-row class="ion-text-end" [hidden]="formChild == 0">
+                        <ion-col>
+                            <ion-icon
+                                name="close-circle-outline"
+                                color="danger"
+                                size="large"
+                                (click)="removeCard(1, formChild)"
+                            ></ion-icon>
+                        </ion-col>
+                    </ion-row>
+                    <ion-card-content>
+                        <ion-row [formGroupName]="formChild">
+                            <ion-col align-self-center size-md="4" size-xs="12">
+                                <ion-item>
+                                    <ion-label position="floating"
+                                        >Tipo</ion-label
+                                    >
+                                    <ion-select
+                                        interface="popover"
+                                        formControlName="tipo"
+                                    >
+                                        <ion-select-option value="tipo1"
+                                            >tipo1</ion-select-option
+                                        >
+                                        <ion-select-option value="tipo2"
+                                            >tipo2</ion-select-option
+                                        >
+                                        <ion-select-option value="tipo3"
+                                            >tipo3</ion-select-option
+                                        >
+                                    </ion-select>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col align-self-center size-md="4" size-xs="12">
+                                <ion-item>
+                                    <ion-label position="floating"
+                                        >Emisor</ion-label
+                                    >
+                                    <ion-input
+                                        formControlName="emisor"
+                                    ></ion-input>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col align-self-center size-md="4" size-xs="12">
+                                <ion-item>
+                                    <ion-label position="floating"
+                                        >folio</ion-label
+                                    >
+                                    <ion-input
+                                        formControlName="folio"
+                                    ></ion-input>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col
+                                align-self-center
+                                size-md="12"
+                                size-lg="12"
+                                size-xs="12"
+                            >
+                                <ion-item>
+                                    <ion-label position="floating"
+                                        >Observaciones</ion-label
+                                    >
+                                    <ion-textarea
+                                        placeholder="Escribe tus observaciones"
+                                        [autoGrow]="true"
+                                        formControlName="observaciones"
+                                    >
+                                    </ion-textarea>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card-content>
+                </ion-card>
+            </ion-grid>
+        </div>
+        <!-- Señas particulares -->
+        <ion-grid [fixed]="true">
+            <ion-row class="ion-align-items-center ion-justify-content-between">
+                <ion-col size-md="4" size-xs="7">
+                    <ion-text color="dark">
+                        <h3>Señas particulares</h3>
+                    </ion-text>
+                </ion-col>
+                <ion-col size-md="2" size-xs="5">
+                    <ion-button
+                        expand="full"
+                        shape="round"
+                        (click)="addCard(2)"
+                    >
+                        <ion-icon
+                            slot="start"
+                            name="add-circle-outline"
+                        ></ion-icon>
+                        Agregar
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <div formArrayName="señasParticulares">
+            <ion-grid
+                [fixed]="true"
+                *ngFor="
+          let item of getCtrl('señasParticulares', persona)?.controls;
+          index as formChild
+        "
+            >
+                <ion-card>
+                    <ion-row class="ion-text-end" [hidden]="formChild == 0">
+                        <ion-col>
+                            <ion-icon
+                                name="close-circle-outline"
+                                color="danger"
+                                size="large"
+                                (click)="removeCard(2, formChild)"
+                            ></ion-icon>
+                        </ion-col>
+                    </ion-row>
+                    <ion-card-content>
+                        <ion-row
+                            class="ion-margin-bottom"
+                            [formGroupName]="formChild"
+                        >
+                            <ion-col
+                                align-self-center
+                                size-md="4"
+                                size-lg="3"
+                                size-xs="12"
+                            >
+                                <ion-item>
+                                    <ion-label position="floating"
+                                        >Tipo</ion-label
+                                    >
+                                    <ion-select
+                                        interface="popover"
+                                        formControlName="tipo"
+                                    >
+                                        <ion-select-option value="tipo1"
+                                            >tipo1</ion-select-option
+                                        >
+                                        <ion-select-option value="tipo2"
+                                            >tipo2</ion-select-option
+                                        >
+                                        <ion-select-option value="tipo3"
+                                            >tipo3</ion-select-option
+                                        >
+                                    </ion-select>
+                                </ion-item>
+                            </ion-col>
+
+                            <ion-col
+                                align-self-center
+                                size-md="4"
+                                size-lg="3"
+                                size-xs="12"
+                            >
+                                <ion-item>
+                                    <ion-label position="floating"
+                                        >Emisor</ion-label
+                                    >
+                                    <ion-input
+                                        formControlName="ubicacion"
+                                    ></ion-input>
+                                </ion-item>
+                            </ion-col>
+
+                            <ion-col
+                                align-self-center
+                                size-md="4"
+                                size-lg="3"
+                                size-xs="12"
+                            >
+                                <ion-item>
+                                    <ion-label position="floating"
+                                        >Observaciones</ion-label
+                                    >
+                                    <ion-input
+                                        formControlName="observaciones"
+                                    ></ion-input>
+                                </ion-item>
+                            </ion-col>
+
+                            <ion-col
+                                align-self-center
+                                size-md="4"
+                                size-lg="3"
+                                size-xs="12"
+                            >
+                                <ion-item>
+                                    <ion-label position="floating"
+                                        >archivo</ion-label
+                                    >
+                                    <ion-input
+                                        formControlName="archivo"
+                                    ></ion-input>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card-content>
+                </ion-card>
+            </ion-grid>
+        </div>
+        <!-- antecedentes -->
+        <ion-grid [fixed]="true">
+            <ion-row class="ion-align-items-center ion-justify-content-between">
+                <ion-col size-md="3" size-xs="7">
+                    <ion-text color="dark">
+                        <h3>Antecedentes</h3>
+                    </ion-text>
+                </ion-col>
+                <ion-col size-md="2" size-xs="5">
+                    <ion-button
+                        expand="full"
+                        shape="round"
+                        (click)="addCard(3)"
+                    >
+                        <ion-icon
+                            slot="start"
+                            name="add-circle-outline"
+                        ></ion-icon>
+                        Agregar
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <div formArrayName="antecedentes">
+            <ion-grid
+                [fixed]="true"
+                *ngFor="
+          let item of getCtrl('antecedentes', persona)?.controls;
+          index as formChild
+        "
+            >
+                <ion-card>
+                    <ion-row class="ion-text-end">
+                        <ion-col>
+                            <ion-icon
+                                name="close-circle-outline"
+                                color="danger"
+                                size="large"
+                                (click)="removeCard(3, formChild)"
+                                [hidden]="formChild == 0"
+                            ></ion-icon>
+                        </ion-col>
+                    </ion-row>
+                    <ion-card-content>
+                        <ion-row
+                            class="ion-margin-bottom"
+                            [formGroupName]="formChild"
+                        >
+                            <ion-col
+                                align-self-center
+                                size-md="4"
+                                size-lg="3"
+                                size-xs="12"
+                            >
+                                <ion-item>
+                                    <ion-label position="floating"
+                                        >Incidente</ion-label
+                                    >
+                                    <ion-input
+                                        formControlName="incidente"
+                                    ></ion-input>
+                                </ion-item>
+                            </ion-col>
+
+                            <ion-col align-self-center size="12">
+                                <ion-item>
+                                    <ion-label position="floating"
+                                        >Diagnostico medico</ion-label
+                                    >
+                                    <ion-textarea
+                                        placeholder="Escribe el diagnostico"
+                                        [autoGrow]="true"
+                                        formControlName="diagnosticoMedico"
+                                    >
+                                    </ion-textarea>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col align-self-center size="12">
+                                <ion-grid [fixed]="true">
+                                    <ion-card-title
+                                        >Resoloción del juez</ion-card-title
+                                    >
+                                    <ion-row
+                                        formGroupName="resolucionJuez"
+                                        class="ion-margin-bottom"
+                                    >
+                                        <ion-col align-self-center size="12">
+                                            <ion-item>
+                                                <ion-label position="floating"
+                                                    >Resolución</ion-label
+                                                >
+                                                <ion-textarea
+                                                    placeholder="Escribe la resolución"
+                                                    [autoGrow]="true"
+                                                    formControlName="resolucionJuez"
+                                                >
+                                                </ion-textarea>
+                                            </ion-item>
+                                        </ion-col>
+
+                                        <ion-col
+                                            align-self-center
+                                            size-md="4"
+                                            size-xs="12"
+                                        >
+                                            <ion-item>
+                                                <ion-label position="floating"
+                                                    >Fecha y hora</ion-label
+                                                >
+                                                <ion-input
+                                                    formControlName="fechaHora"
+                                                ></ion-input>
+                                            </ion-item>
+                                        </ion-col>
+
+                                        <ion-col
+                                            align-self-center
+                                            size-md="4"
+                                            size-xs="12"
+                                        >
+                                            <ion-item>
+                                                <ion-label position="floating"
+                                                    >Horas de
+                                                    detencón</ion-label
+                                                >
+                                                <ion-input
+                                                    formControlName="horasDetencion"
+                                                ></ion-input>
+                                            </ion-item>
+                                        </ion-col>
+
+                                        <ion-col
+                                            align-self-center
+                                            size-md="4"
+                                            size-xs="12"
+                                        >
+                                            <ion-item>
+                                                <ion-label position="floating"
+                                                    >fundamento</ion-label
+                                                >
+                                                <ion-input
+                                                    formControlName="fundamento"
+                                                ></ion-input>
+                                            </ion-item>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-grid>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card-content>
+                </ion-card>
+            </ion-grid>
+        </div>
+
+        <ion-grid>
+            <ion-row>
+                <ion-col class="ion-text-center">
+                    <ion-button
+                        type="submit"
+                        shape="round"
+                        [disabled]="!persona.valid"
+                        >Guardar</ion-button
+                    >
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+    <div>
+        <p>Estado del formulario: {{ persona.valid }}</p>
+        <p>Status: {{ persona.status }}</p>
+
+        <pre>
+						{{ persona.value | json }}
+					</pre
+        >
+    </div>
+</ion-content>
