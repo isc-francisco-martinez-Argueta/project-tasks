@@ -1,3 +1,94 @@
 <app-header titulo="Drogas"></app-header>
 
-<ion-content> </ion-content>
+<ion-content>
+    <form autocomplete="off" [formGroup]="drogas" (ngSubmit)="onSubmit()">
+        <ion-grid [fixed]="true">
+            <ion-row justify-content-center>
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Tipo</ion-label>
+                        <ion-select interface="popover" formControlName="tipo">
+                            <ion-select-option value="tipo1"
+                                >tipo1</ion-select-option
+                            >
+                            <ion-select-option value="tipo2"
+                                >tipo2</ion-select-option
+                            >
+                            <ion-select-option value="tipo3"
+                                >tipo3</ion-select-option
+                            >
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Calidad</ion-label>
+                        <ion-select
+                            interface="popover"
+                            formControlName="calidad"
+                        >
+                            <ion-select-option value="calidad1"
+                                >Calidad1</ion-select-option
+                            >
+                            <ion-select-option value="calidad2"
+                                >Calidad2</ion-select-option
+                            >
+                            <ion-select-option value="calidad3"
+                                >Calidad3</ion-select-option
+                            >
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Cantidad</ion-label>
+                        <ion-input
+                            type="number"
+                            formControlName="cantidad"
+                        ></ion-input>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Unidad</ion-label>
+                        <ion-select
+                            interface="popover"
+                            formControlName="unidad"
+                        >
+                            <ion-select-option value="unidad1"
+                                >Unidad1</ion-select-option
+                            >
+                            <ion-select-option value="unidad2"
+                                >Unidad2</ion-select-option
+                            >
+                            <ion-select-option value="unidad3"
+                                >Unidad3</ion-select-option
+                            >
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col
+                    align-self-center
+                    size-md="12"
+                    size-lg="12"
+                    size-xs="12"
+                >
+                    <ion-item>
+                        <ion-label position="floating">Observaciones</ion-label>
+                        <ion-textarea
+                            placeholder="Escribe tus observaciones"
+                            [autoGrow]="true"
+                            formControlName="observaciones"
+                        >
+                        </ion-textarea>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-button block color="primary" type="submit"> Login </ion-button>
+    </form>
+</ion-content>
