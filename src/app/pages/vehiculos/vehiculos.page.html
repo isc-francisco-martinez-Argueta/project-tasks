@@ -1,3 +1,164 @@
 <app-header titulo="Vehiculos"></app-header>
 
-<ion-content> </ion-content>
+<ion-content>
+    <form autocomplete="off" [formGroup]="vehiculo" (ngSubmit)="onSubmit()">
+        <ion-grid [fixed]="true">
+            <ion-row justify-content-center>
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Calidad</ion-label>
+                        <ion-select
+                            interface="popover"
+                            formControlName="calidad"
+                        >
+                            <ion-select-option value="calidad1"
+                                >Calidad1</ion-select-option
+                            >
+                            <ion-select-option value="calidad2"
+                                >Calidad2</ion-select-option
+                            >
+                            <ion-select-option value="calidad3"
+                                >Calidad3</ion-select-option
+                            >
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Tipo</ion-label>
+                        <ion-select interface="popover" formControlName="tipo">
+                            <ion-select-option value="tipo1"
+                                >tipo1</ion-select-option
+                            >
+                            <ion-select-option value="tipo2"
+                                >tipo2</ion-select-option
+                            >
+                            <ion-select-option value="tipo3"
+                                >tipo3</ion-select-option
+                            >
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Modelo</ion-label>
+                        <ion-input formControlName="modelo"></ion-input>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Marca</ion-label>
+                        <ion-select interface="popover" formControlName="marca">
+                            <ion-select-option value="marca1"
+                                >Marca1</ion-select-option
+                            >
+                            <ion-select-option value="marca2"
+                                >Marca2</ion-select-option
+                            >
+                            <ion-select-option value="marca3"
+                                >Marca3</ion-select-option
+                            >
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Submarca</ion-label>
+                        <ion-select
+                            interface="popover"
+                            formControlName="submarca"
+                        >
+                            <ion-select-option value="submarca1"
+                                >Submarca1</ion-select-option
+                            >
+                            <ion-select-option value="submarca2"
+                                >Submarca2</ion-select-option
+                            >
+                            <ion-select-option value="submarca3"
+                                >Submarca3</ion-select-option
+                            >
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Color</ion-label>
+                        <ion-select interface="popover" formControlName="color">
+                            <ion-select-option value="rojo"
+                                >Rojo</ion-select-option
+                            >
+                            <ion-select-option value="azul"
+                                >Azul</ion-select-option
+                            >
+                            <ion-select-option value="verde"
+                                >Verde</ion-select-option
+                            >
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Placa</ion-label>
+                        <ion-input formControlName="placa"></ion-input>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Serie</ion-label>
+                        <ion-input formControlName="serie"></ion-input>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Motor</ion-label>
+                        <ion-input formControlName="motor"></ion-input>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Niv</ion-label>
+                        <ion-input formControlName="niv"></ion-input>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col align-self-center size-md="4" size-lg="3" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Propietario</ion-label>
+                        <ion-input formControlName="propietario"></ion-input>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col
+                    align-self-center
+                    size-md="12"
+                    size-lg="12"
+                    size-xs="12"
+                >
+                    <ion-item>
+                        <ion-label position="floating">Observaciones</ion-label>
+                        <ion-textarea
+                            placeholder="Escribe tus observaciones"
+                            [autoGrow]="true"
+                            formControlName="observaciones"
+                        >
+                        </ion-textarea>
+                    </ion-item>
+                </ion-col>
+                <ion-col align-self-center size="12">
+                    <ion-button block color="primary" type="submit">
+                        ok
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+</ion-content>
