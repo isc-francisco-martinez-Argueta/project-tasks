@@ -3,3 +3,7 @@ export interface Componente {
     name: string;
     redirectTo: string;
 }
+
+export interface Usuario {
+    name: string;
+}

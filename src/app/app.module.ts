@@ -10,7 +10,9 @@ import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-
+import { PdfMakeWrapper } from "pdfmake-wrapper";
+import * as pdfFonts from "pdfmake/build/vfs_fonts";
+PdfMakeWrapper.setFonts(pdfFonts);
 @NgModule({
     declarations: [AppComponent],
     entryComponents: [],

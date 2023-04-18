@@ -18,5 +18,10 @@
         "icon": "car-sport-outline",
         "name": "Vehiculos",
         "redirectTo": "/vehiculos"
+    },
+    {
+        "icon": "people-outline",
+        "name": "Usuarios",
+        "redirectTo": "/usuarios"
     }
 ]

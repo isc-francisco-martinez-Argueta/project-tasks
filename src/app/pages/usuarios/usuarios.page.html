@@ -1,0 +1,16 @@
+<app-header titulo="Usuarios"></app-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item-sliding *ngFor="let user of usuarios | async">
+            <ion-item-options side="start">
+                <ion-item-option color="primary" (click)="reporte(user)"
+                    >Reporte</ion-item-option
+                >
+            </ion-item-options>
+            <ion-item>
+                <ion-label>{{user.name}}</ion-label>
+            </ion-item>
+        </ion-item-sliding>
+    </ion-list>
+</ion-content>
